@@ -1,0 +1,101 @@
+* {
+  box-sizing: border-box;
+  font-family: "Noto Sans TC", sans-serif;
+}
+
+body {
+  margin: 0px;
+  padding: 0px;
+  background: linear-gradient(180deg, rgb(5, 117, 105) 0%, rgb(64, 164, 154) 35%, rgb(120, 209, 201) 100%);
+  width: 100%;
+}
+
+html {
+  font-size: 16px;
+}
+
+#tableTitle .tableTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 0rem;
+  background-color: #7bd4cc;
+  margin: 0px;
+}
+#tableTitle .tableTitle span {
+  color: white;
+}
+
+.background {
+  height: 100vh;
+  background-color: #fff;
+  box-shadow: 0px 0px 80px 0.5px black;
+}
+.background #option {
+  gap: 5%;
+  position: relative;
+}
+.background #option button {
+  width: 60px;
+  height: 60px;
+  background-color: #ffc600;
+  border: none;
+  color: white;
+  border-radius: 50%;
+  box-shadow: 0px 5px 12px 1px rgba(128, 128, 128, 0.356);
+  font-size: 22px;
+  transform: scale(0.8);
+  transition: transform 0.2s ease-in;
+}
+.background #option button:hover {
+  transform: scale(1);
+}
+.background #option .addBtn {
+  position: absolute;
+  right: 100px;
+  top: -28px;
+}
+.background #option .searchBtn {
+  position: absolute;
+  right: 20px;
+  top: -28px;
+}
+.background .table {
+  margin: 0px auto;
+  background-color: #fff;
+}
+.background #cardtable {
+  text-align: center;
+  padding: 3rem 0rem;
+}
+.background #cardtable thead tr {
+  color: #1b7a75;
+  border-color: rgba(123, 212, 204, 0.6235294118);
+}
+.background #cardtable tbody tr {
+  position: relative;
+}
+.background #cardtable tbody tr td {
+  line-height: 38px;
+}
+.background #cardtable tbody tr .tooltiptext {
+  visibility: hidden;
+  width: 200px;
+  background-color: #7bd4cc;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  /* Position the tooltip */
+  position: absolute;
+  top: 20px;
+  left: -160px;
+  z-index: 1;
+}
+.background #cardtable tbody tr:hover .tooltiptext {
+  visibility: visible;
+}
+
+.modal-dialog {
+  margin-top: 120px;
+}/*# sourceMappingURL=demo.css.map */

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Hello World">
+  <!-- <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+  <link rel="stylesheet" href="https://jqueryui.com/resources/demos/style.css">
+  <link rel="stylesheet" href="	https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="./css/demo.css" charset="UTF-8">
+  <title>個人資料表</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="background">
+      <div id="tableTitle">
+        <h1 class="tableTitle">
+          <span>個人資料表</span>
+        </h1>
+      </div>
+      <div class="table">
+        <div id="option">
+          <button type="button" class="btn btn-light addBtn" data-bs-toggle="modal" data-bs-target="#addDialog"
+            data-bs-whatever="@mdo"><i class="fa-solid fa-plus"></i></button>
+          <button type="button" class="btn btn-light searchBtn" data-bs-toggle="modal" data-bs-target="#searchDialog"
+            data-bs-whatever="@mdo"><i class=" fa-solid fa-magnifying-glass"></i></button>
+        </div>
+        <br>
+        <table id="cardtable" style='width: 100%' class='table table-hover'>
+          <thead>
+            <tr>
+              <th>中文名字</th>
+              <th>英文名字</th>
+              <th>性別</th>
+              <th>手機</th>
+              <th>Mail</th>
+              <th>修改</th>
+              <th>刪除</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!--新增表單-->
+  <div class="modal fade" id="addDialog" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">新增表單</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form method="post" id="addForm" action="http://localhost:3000/ajax">
+            <div class="mb-3">
+              <label for="cnname" class="col-form-label">中文姓名:</label>
+              <span class="wrongCnname text-danger" style="display:none;">輸入錯誤</span>
+              <input type="text" class="form-control cnname addCn" name="cnname" id="cnname" value="">
+            </div>
+            <div class="mb-3">
+              <label for="enname" class="col-form-label">英文姓名:</label>
+              <span class="wrongEnname text-danger" style="display:none;">輸入錯誤</span>
+              <input type="text" class="form-control enname addEn" name="enname" id="enname" value="">
+            </div>
+            <div class="mb-3">
+              <label for="cnname" class="col-form-label">手機:</label>
+              <span class="wrongPhone text-danger" style="display:none;">輸入錯誤</span>
+              <input type="text" class="form-control phone addPhone" name="phone" id="phone" value="">
+            </div>
+            <div class="mb-3">
+              <label for="cnname" class="col-form-label">電子信箱:</label>
+              <span class="wrongMail text-danger" style="display:none;">輸入錯誤</span>
+              <input type="text" class="form-control mail addMail" name="mail" id="mail" value="">
+            </div>
+            <div class="mb-3">
+              <label for="" class="col-form-label">性別:</label>
+              <label><input type="radio" name="addsex" value="0" class="radio addMan man" checked="checked">男</label>
+              <label><input type="radio" name="addsex" value="1" class="radio addWoman woman">女</label>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-light" id="addData" data-name="#addDialog">新增</button>
+          <button type="button" class="btn btn-secondary reset" data-name="#addDialog">重新填寫</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--搜尋表單-->
+  <div class="modal fade" id="searchDialog" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">搜尋表單</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form method="post" id="searchForm" action="http://localhost:3000/ajax">
+            <div class="mb-3">
+              <label for="cnname" class="col-form-label">中文姓名:</label>
+              <span class="wrongCnname text-danger" style="display:none;">輸入錯誤</span>
+              <input type="text" class="form-control cnname searchCn" id="searchCn">
+            </div>
+            <div class="mb-3">
+              <label for="enname" class="col-form-label">英文姓名:</label>
+              <span class="wrongEnname text-danger" style="display:none;">輸入錯誤</span>
+              <input type="text" class="form-control enname searchEn" id="searchEn">
+            </div>
+            <div class="mb-3">
+              <label for="cnname" class="col-form-label">手機:</label>
+              <span class="wrongPhone text-danger" style="display:none;">輸入錯誤</span>
+              <input type="text" class="form-control phone searchPhone" name="phone" id="searchPhone" value="">
+            </div>
+            <div class="mb-3">
+              <label for="cnname" class="col-form-label">電子信箱:</label>
+              <span class="wrongMail text-danger" style="display:none;">輸入錯誤</span>
+              <input type="text" class="form-control mail searchMail" name="mail" id="searchMail" value="">
+            </div>
+            <div class="mb-3">
+              <label for="" class="col-form-label">性別:</label>
+              <label><input type="radio" name="searchSex" value="0" class="radio searchMan man" checked="checked">男</label>
+              <label><input type="radio" name="searchSex" value="1" class="radio searchWoman woman">女</label>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" id="searchData" data-name="#searchDialog">搜尋</button>
+          <button type="button" class="btn btn-secondary reset" data-name="#searchDialog">重新填寫</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--修改表單-->
+  <div class="modal fade" id="modifyDialog" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">修改表單</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form method="post" id="modifyForm" action="http://localhost:3000/ajax">
+            <div class="mb-3">
+              <label for="cnname" class="col-form-label">中文姓名:</label>
+              <span class="wrongCnname text-danger" style="display:none;">輸入錯誤</span>
+              <input type="text" class="form-control modifyCn cnname" id="cnname">
+            </div>
+            <div class="mb-3">
+              <label for="enname" class="col-form-label">英文姓名:</label>
+              <span class="wrongEnname  text-danger" style="display:none;">輸入錯誤</span>
+              <input type="text" class="form-control modifyEn enname" id="enname">
+            </div>
+            <div class="mb-3">
+              <label for="cnname" class="col-form-label">手機:</label>
+              <span class="wrongPhone text-danger" style="display:none;">輸入錯誤</span>
+              <input type="text" class="form-control phone modifyPhone" name="phone" id="phone" value="">
+            </div>
+            <div class="mb-3">
+              <label for="cnname" class="col-form-label">電子信箱:</label>
+              <span class="wrongMail text-danger" style="display:none;">輸入錯誤</span>
+              <input type="text" class="form-control mail modifyMail" name="mail" id="mail" value="">
+            </div>
+            <div class="mb-3">
+              <label for="" class="col-form-label">性別:</label>
+              <label><input type="radio" name="modifySex" value="0" class="radio searchMan man" checked="checked">男</label>
+              <label><input type="radio" name="modifySex" value="1" class="radio searchWoman woman">女</label>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" id="modifyBtn" data-name="#modifyDialog">確定修改</button>
+          <button type="button" class="btn btn-secondary reset" data-name="#modifyDialog">重新填寫</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 刪除確認視窗 -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">刪除確認</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          確定要刪除該欄位嗎?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-warning">確定刪除</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 確認送出 -->
+  </form>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/demo.js"></script>
+</body>
+
+</html>
